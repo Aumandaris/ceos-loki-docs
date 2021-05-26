@@ -1,0 +1,12 @@
+= Documentación de Loki
+Augusto Zabala <augustozabalag@gmail.com>
+vb0.1
+:toc: left
+:toc-title: Tabla de Contenidos
+
+.Como Prometheus, ¡para registros!
+image::media\logo-y-nombre.png[caption="",Logo y nombre,align="center",text-align="center"]
+
+Grafana Loki es un conjunto de componentes que se pueden componer en una pila de registro con todas las funciones.
+
+A diferencia de otros sistemas de registro, Loki se basa en la idea de indexar solo metadatos sobre sus registros: etiquetas (al igual que las etiquetas de Prometheus). Los datos de registro en sí mismos se comprimen y almacenan en fragmentos en almacenes de objetos como S3 o GCS, o incluso localmente en el sistema de archivos. Un índice pequeño y fragmentos altamente comprimidos simplifican la operación y reducen significativamente el costo de Loki.
