@@ -1,8 +1,4 @@
 = Solución de problemas de Loki
-Augusto Zabala <augustozabalag@gmail.com>
-vb0.1
-:toc: left
-:toc-title: Tabla de Contenidos
 
 == “Loki: Bad Gateway. 502”
 

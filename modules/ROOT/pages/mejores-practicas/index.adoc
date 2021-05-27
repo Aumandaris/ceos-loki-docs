@@ -1,8 +1,4 @@
 = Mejores prácticas para etiquetas en Loki
-Augusto Zabala <augustozabalag@gmail.com>
-vb0.1
-:toc: left
-:toc-title: Tabla de Contenidos
 
 Loki está en desarrollo activo y trabajamos constantemente para mejorar el rendimiento. Pero estas son algunas de las mejores prácticas más actuales para etiquetas que le brindarán la mejor experiencia con Loki.
 

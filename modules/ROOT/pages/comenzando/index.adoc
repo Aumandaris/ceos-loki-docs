@@ -1,8 +1,4 @@
 = Empezando con Loki
-Augusto Zabala <augustozabalag@gmail.com>
-vb0.1
-:toc: left
-:toc-title: Tabla de Contenidos
 
 . [Introducir registros en Loki]
 . [Grafana]

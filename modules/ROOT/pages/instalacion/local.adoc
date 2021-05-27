@@ -1,8 +1,4 @@
 = Instalar y ejecutar Loki localmente
-Augusto Zabala <augustozabalag@gmail.com>
-vb0.1
-:toc: left
-:toc-title: Tabla de Contenidos
 
 Para registrar eventos con Loki, debe descargar e instalar Promtail y Loki.
 

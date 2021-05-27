@@ -1,8 +1,4 @@
 = Loki en Grafana
-Augusto Zabala <augustozabalag@gmail.com>
-vb0.1
-:toc: left
-:toc-title: Tabla de Contenidos
 
 Grafana se envía con soporte integrado para Loki para versiones superiores a [6.0]. Se recomienda encarecidamente utilizar [6.3] o posterior para aprovechar la nueva funcionalidad de [LogQL].
 

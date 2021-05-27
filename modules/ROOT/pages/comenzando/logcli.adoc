@@ -1,8 +1,4 @@
 = Consultando a Loki con LogCLI
-Augusto Zabala <augustozabalag@gmail.com>
-vb0.1
-:toc: left
-:toc-title: Tabla de Contenidos
 
 Si prefiere una interfaz de línea de comandos, LogCLI también permite a los usuarios ejecutar consultas [LogQL] en un servidor Loki.
 

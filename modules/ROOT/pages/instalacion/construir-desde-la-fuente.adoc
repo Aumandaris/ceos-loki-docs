@@ -1,8 +1,4 @@
 = Construir desde la fuente
-Augusto Zabala <augustozabalag@gmail.com>
-vb0.1
-:toc: left
-:toc-title: Tabla de Contenidos
 
 Para construir Loki manualmente, necesita clonar el repositorio de GitHub y luego `make Loki`.
 

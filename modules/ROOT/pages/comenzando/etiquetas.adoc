@@ -1,8 +1,4 @@
 = Etiquetas
-Augusto Zabala <augustozabalag@gmail.com>
-vb0.1
-:toc: left
-:toc-title: Tabla de Contenidos
 
 Las etiquetas son pares de valores clave y se pueden definir como cualquier cosa. Nos gusta referirnos a ellos como metadatos para describir un flujo de registros. Si está familiarizado con Prometheus, hay algunas etiquetas que está acostumbrado a ver, como `job` e `instance`, y las usaré en los siguientes ejemplos.
 

@@ -1,8 +1,4 @@
 = Introducir registros en Loki
-Augusto Zabala <augustozabalag@gmail.com>
-vb0.1
-:toc: left
-:toc-title: Tabla de Contenidos
 
 Después de link:../instalacion/local.adoc[instalar y ejecutar Loki], probablemente desee obtener registros de otras aplicaciones.
 
