@@ -1,0 +1,12 @@
+= ceos-loki-docs
+
+== https://aumandaris.github.io/ceos-loki-docs/ceos-loki-docs.html[Ir a la Documentación]
+
+== Versión b0.1
+
+* Referencias internas no funcionales
+
+== Por Hacer
+
+* Arreglar referencias internas
+* Publicar con Antora

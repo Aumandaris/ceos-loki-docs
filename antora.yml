@@ -1,0 +1,6 @@
+name: documentacion-de-loki
+title: Documentación de Loki
+version: 0.2
+start_page: ROOT/pages/index.adoc
+nav:
+- modules/ROOT/nav.adoc
