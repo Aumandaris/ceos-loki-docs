@@ -1,6 +1,6 @@
 site:
   title: Documentación de Loki
-  url: https://aumandaris.github.io/ceos-Loki-docs/index.html
+  url: https://aumandaris.github.io/ceos-Loki-docs/build/site/ceos-loki-docs/1.0/index.html
   start_page: ceos-loki-docs::index.adoc
 content:
   sources: 
