@@ -1,6 +1,6 @@
 name: ceos-loki-docs
 title: Documentación de Loki
 version: 1.0
-start_page: ROOT/pages/index.adoc
+start_page: modules/ROOT/pages/index.adoc
 nav:
 - modules/ROOT/nav.adoc
