@@ -1,3 +1,5 @@
 name: ceos-loki-docs
+title: Documentación de Loki
 version : '1.0'
-
+nav:
+- modules/ROOT/nav.adoc
