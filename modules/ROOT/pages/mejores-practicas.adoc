@@ -1,7 +1,7 @@
 = Documentación de Loki
 
 .Como Prometheus, ¡para registros!
-image::media\logo-y-nombre.png[caption="",Logo y nombre,align="center",text-align="center"]
+image::..\images\logo-y-nombre.png[caption="",Logo y nombre,align="center",text-align="center"]
 
 Grafana Loki es un conjunto de componentes que se pueden componer en una pila de registro con todas las funciones.
 

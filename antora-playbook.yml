@@ -1,0 +1,11 @@
+site:
+  title: Documentación de Loki
+  url: https://aumandaris.github.io/ceos-Loki-docs/index.html
+  start_page: ceos-loki-docs::index.adoc
+content:
+  sources: 
+  - url: https://github.com/Aumandaris/ceos-loki-docs.git
+ui:
+  bundle: 
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/master/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
