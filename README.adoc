@@ -8,3 +8,7 @@
 
 image::modules/ROOT/images/ceos-loki-docs.png[]
 
+== Por Hacer
+
+* Eliminar los elementos de la barra de navegación
+
