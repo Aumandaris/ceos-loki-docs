@@ -18,7 +18,7 @@ Esto puede parecer sorprendente, pero si las aplicaciones tienen un volumen medi
 
 Anteriormente, mencionamos no agregar etiquetas hasta que las _necesitara_, entonces, ¿cuándo _necesitaría_ etiquetas? Un poco más abajo hay una sección sobre `chunk_target_size`. Si establece esto en 1MB (lo cual es razonable), esto intentará cortar fragmentos con un tamaño comprimido de 1MB, que es aproximadamente 5MB de registros sin comprimir (puede ser hasta 10MB según la compresión). Si sus registros tienen suficiente volumen para escribir 5MB en menos tiempo que `max_chunk_age`, o *muchos* fragmentos en ese período de tiempo, es posible que desee considerar dividirlos en flujos separados con una etiqueta dinámica.
 
-Lo que desea evitar es dividir un archivo de registro en flujos, lo que da como resultado que los fragmentos se vacíen porque el flujo está inactivo o alcanza la edad máxima antes de llenarse. A partir de [Loki 1.4.0], hay una métrica que puede ayudarlo a comprender por qué los fragmentos se vacían `sum by (reason) (rate(loki_ingester_chunks_flushed_total{cluster="dev"}[1m]))`.
+Lo que desea evitar es dividir un archivo de registro en flujos, lo que da como resultado que los fragmentos se vacíen porque el flujo está inactivo o alcanza la edad máxima antes de llenarse. A partir de https://grafana.com/blog/2020/04/01/loki-v1.4.0-released-with-query-statistics-and-up-to-300x-regex-optimization/[Loki 1.4.0], hay una métrica que puede ayudarlo a comprender por qué los fragmentos se vacían `sum by (reason) (rate(loki_ingester_chunks_flushed_total{cluster="dev"}[1m]))`.
 
 No es fundamental que todos los fragmentos estén llenos cuando se vacían, pero mejorará muchos aspectos de la operación. Como tal, nuestra guía actual aquí es evitar las etiquetas dinámicas tanto como sea posible y, en cambio, favorecer las expresiones de filtro. Por ejemplo, no agregue una etiqueta dinámica `level`, simplemente `|= “level=debug”` en su lugar.
 
@@ -30,9 +30,9 @@ Trate de mantener los valores delimitados a un conjunto lo más pequeño posible
 
 == Tenga en cuenta las etiquetas dinámicas aplicadas por los clientes
 
-Loki tiene varias opciones de cliente: [Promtail] (que también admite la ingestión de diarios de systemd y la ingesta de syslog basada en TCP), [Fluentd], [Fluent Bit], un [complemento de Docker] y más.
+Loki tiene varias opciones de cliente: https://github.com/grafana/loki/tree/master/docs/sources/clients/promtail[Promtail] (que también admite la ingestión de diarios de systemd y la ingesta de syslog basada en TCP), https://github.com/grafana/loki/tree/master/fluentd/fluent-plugin-grafana-loki[Fluentd], https://github.com/grafana/loki/tree/master/cmd/fluent-bit[Fluent Bit], un https://grafana.com/blog/2019/07/15/lokis-path-to-ga-docker-logging-driver-plugin-support-for-systemd/[complemento de Docker] y más.
 
-Cada uno de estos viene con formas de configurar qué etiquetas se aplican para crear flujos de registro. Pero tenga en cuenta qué etiquetas dinámicas se pueden aplicar. Use la API de la serie Loki para tener una idea de cómo se ven sus flujos de registro y ver si puede utilizar formas de reducir los flujos y la cardinalidad. La información de la serie se puede consultar a través de la [API de la Serie], o puede utilizar [logcli].
+Cada uno de estos viene con formas de configurar qué etiquetas se aplican para crear flujos de registro. Pero tenga en cuenta qué etiquetas dinámicas se pueden aplicar. Use la API de la serie Loki para tener una idea de cómo se ven sus flujos de registro y ver si puede utilizar formas de reducir los flujos y la cardinalidad. La información de la serie se puede consultar a través de la xref:api/api.adoc#series[API de la Serie], o puede utilizar xref:comenzando/logcli.adoc[logcli].
 
 En Loki 1.6.0 y posteriores, el comando de la serie logcli agregó el indicador `--analyze-labels` específicamente para depurar etiquetas de alta cardinalidad:
 
@@ -90,7 +90,7 @@ Si Loki recibiera estas dos líneas que son para el mismo flujo, todo estaría b
 {job=”syslog”, instance=”host2”} 00:00:02 i’m a syslog!  <- Accepted, still in order for stream 2
 ----
 
-Pero, ¿qué pasa si la propia aplicación genera registros que no funcionan? Bueno, me temo que esto es un problema. Si extrae la marca de tiempo de la línea de registro con algo como [la etapa de fuente de información de promtail], usted podría _no hacer_ esto y dejar que Promtail asigne una marca de tiempo a las líneas de registro. O con suerte, puede solucionarlo en la propia aplicación.
+Pero, ¿qué pasa si la propia aplicación genera registros que no funcionan? Bueno, me temo que esto es un problema. Si extrae la marca de tiempo de la línea de registro con algo como xref:clientes/promtail/etapas/marca-de-tiempo.adoc[la etapa de fuente de información de promtail], usted podría _no hacer_ esto y dejar que Promtail asigne una marca de tiempo a las líneas de registro. O con suerte, puede solucionarlo en la propia aplicación.
 
 ¡Pero quiero que Loki arregle esto! ¿Por qué no puedes almacenar en búfer los flujos y reordenarlos por mí? Para ser honesto, porque esto agregaría mucha sobrecarga de memoria y complicación a Loki, y como ha sido un hilo común en esta publicación, queremos que Loki sea simple y rentable. Idealmente, querríamos mejorar a nuestros clientes para que realicen un almacenamiento y una clasificación básicos, ya que este parece un mejor lugar para resolver este problema.
 
@@ -98,7 +98,7 @@ También vale la pena señalar que la naturaleza de procesamiento por lotes de l
 
 == Utilizar `chunk_target_size`
 
-Esto se agregó anteriormente en la versión de [Loki v1.3.0] y hemos estado experimentando con ello durante varios meses. Tenemos `chunk_target_size: 1536000` en todos nuestros entornos ahora. Esto le indica a Loki que intente llenar todos los fragmentos hasta un tamaño _comprimido_ objetivo de 1,5MB. Estos fragmentos más grandes son más eficientes para que Loki los procese.
+Esto se agregó anteriormente en la versión de https://grafana.com/blog/2020/01/22/loki-1.3.0-released/[Loki v1.3.0] y hemos estado experimentando con ello durante varios meses. Tenemos `chunk_target_size: 1536000` en todos nuestros entornos ahora. Esto le indica a Loki que intente llenar todos los fragmentos hasta un tamaño _comprimido_ objetivo de 1,5MB. Estos fragmentos más grandes son más eficientes para que Loki los procese.
 
 Un par de otras variables de configuración afectan la capacidad de un fragmento. Loki tiene un `max_chunk_age` predeterminado de 1h y `chunk_idle_period` de 30m para limitar la cantidad de memoria utilizada, así como la exposición de registros perdidos si el proceso falla.
 

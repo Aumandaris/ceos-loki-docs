@@ -1,12 +1,12 @@
 = Consultando a Loki con LogCLI
 
-Si prefiere una interfaz de línea de comandos, LogCLI también permite a los usuarios ejecutar consultas [LogQL] en un servidor Loki.
+Si prefiere una interfaz de línea de comandos, LogCLI también permite a los usuarios ejecutar consultas xref:logql/logql.adoc[LogQL] en un servidor Loki.
 
 == Instalación
 
 === Binario (recomendado)
 
-Cada versión incluye binarios para `logcli` que se pueden encontrar en la [Página de lanzamientos].
+Cada versión incluye binarios para `logcli` que se pueden encontrar en la https://github.com/grafana/loki/releases[Página de lanzamientos].
 
 === Desde la fuente
 

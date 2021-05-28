@@ -86,7 +86,7 @@ Puede consultar el registro de Promtail mirando en `/var/log/containers` en el r
 
 == Habilitar el seguimiento de Loki
 
-Se puede seguir a Loki usando [Jaeger] configurando la variable de entorno `JAEGER_AGENT_HOST` en el nombre de host y el puerto donde se ejecuta Loki.
+Se puede seguir a Loki usando https://www.jaegertracing.io/[Jaeger] configurando la variable de entorno `JAEGER_AGENT_HOST` en el nombre de host y el puerto donde se ejecuta Loki.
 
 Si implementa con Helm, use el siguiente comando:
 

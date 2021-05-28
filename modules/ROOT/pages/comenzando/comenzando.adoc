@@ -1,7 +1,7 @@
 = Empezando con Loki
 
-. [Introducir registros en Loki]
+. xref:comenzando/introducir-registros-en-loki.adoc[Introducir registros en Loki]
 . [Grafana]
-. [LogCLI]
-. [Etiquetas]
-. [Solución de problemas]
+. xref:comenzando/logcli.adoc[LogCLI]
+. xref:comenzando/etiquetas.adoc[Etiquetas]
+. xref:comenzando/solucion-de-problemas.adoc[Solución de problemas]

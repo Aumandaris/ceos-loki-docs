@@ -2,7 +2,7 @@
 
 Las etiquetas son pares de valores clave y se pueden definir como cualquier cosa. Nos gusta referirnos a ellos como metadatos para describir un flujo de registros. Si está familiarizado con Prometheus, hay algunas etiquetas que está acostumbrado a ver, como `job` e `instance`, y las usaré en los siguientes ejemplos.
 
-Las configuraciones de raspado que proporcionamos con Loki también definen estas etiquetas. Si está utilizando Prometheus, tener etiquetas consistentes entre Loki y Prometheus es uno de los superpoderes de Loki, lo que hace que sea increíblemente [fácil correlacionar las métricas de su aplicación con sus datos de registro].
+Las configuraciones de raspado que proporcionamos con Loki también definen estas etiquetas. Si está utilizando Prometheus, tener etiquetas consistentes entre Loki y Prometheus es uno de los superpoderes de Loki, lo que hace que sea increíblemente https://grafana.com/blog/2019/05/06/how-loki-correlates-metrics-and-logs-and-saves-you-money/[fácil correlacionar las métricas de su aplicación con sus datos de registro].
 
 == Cómo usa Loki las etiquetas
 
@@ -133,7 +133,7 @@ Los dos ejemplos anteriores utilizan etiquetas definidas estáticamente con un s
       __path__: /var/log/apache.log
 ----
 
-Esta expresión regular coincide con todos los componentes de la línea de registro y extrae el valor de cada componente en un grupo de captura. Dentro del código de la fuente de información, estos datos se colocan en una estructura de datos temporal que permite usarlos para varios propósitos durante el procesamiento de esa línea de registro (momento en el que se descartan los datos temporales). Se pueden encontrar muchos más detalles sobre esto en la documentación de las [Fuentes de información de Promtail].
+Esta expresión regular coincide con todos los componentes de la línea de registro y extrae el valor de cada componente en un grupo de captura. Dentro del código de la fuente de información, estos datos se colocan en una estructura de datos temporal que permite usarlos para varios propósitos durante el procesamiento de esa línea de registro (momento en el que se descartan los datos temporales). Se pueden encontrar muchos más detalles sobre esto en la documentación de las xref:promtail/fuentes-de-informacion.adoc[Fuentes de información de Promtail].
 
 A partir de esa expresión regular, utilizaremos dos de los grupos de captura para establecer dinámicamente dos etiquetas según el contenido de la línea de registro en sí:
 
@@ -187,7 +187,7 @@ Ahora hablemos de Loki, donde el índice suele ser un orden de magnitud menor qu
 
 Loki efectivamente mantendrá sus costos estáticos lo más bajos posible (tamaño de índice y requisitos de memoria, así como almacenamiento de registros estáticos) y hará que el rendimiento de la consulta sea algo que pueda controlar en tiempo de ejecución con escalado horizontal.
 
-Para ver cómo funciona, analicemos nuestro ejemplo de cómo consultar los datos de su registro de acceso para obtener una dirección IP específica. No queremos usar una etiqueta para almacenar la IP. En su lugar, usamos una [expresión de filtro] para consultarlo:
+Para ver cómo funciona, analicemos nuestro ejemplo de cómo consultar los datos de su registro de acceso para obtener una dirección IP específica. No queremos usar una etiqueta para almacenar la IP. En su lugar, usamos una xref:logql:logql.adoc#expresion-de-filtro[expresión de filtro] para consultarlo:
 
 ----
 {job=”apache”} |= “11.11.11.11”

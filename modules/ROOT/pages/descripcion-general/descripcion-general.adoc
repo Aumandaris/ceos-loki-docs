@@ -6,7 +6,7 @@ Grafana Loki es un conjunto de componentes que se pueden componer en una pila de
 
 A diferencia de otros sistemas de registro, Loki se basa en la idea de indexar únicamente las etiquetas de los registros y dejar el mensaje de registro original sin indexar. Esto significa que Loki es más económico de operar y puede ser mucho más eficiente.
 
-Para obtener una versión más detallada de este mismo documento, lea <<Arquitectura>>.
+Para obtener una versión más detallada de este mismo documento, lea xref:arquitectura/arquitectura.adoc[Arquitectura].
 
 === Tenencia múltiple
 
@@ -20,26 +20,29 @@ Loki está optimizado para ejecutarse localmente (o a pequeña escala) y para es
 
 ==== Distribuidor
 
-El servicio *distribuidor* es responsable de manejar los registros escritos por los <<clientes>>. Es esencialmente la "primera parada" en la ruta de escritura de los datos de registro. Una vez que el distribuidor recibe los datos de registro, los divide en lotes y los envía a múltiples <<consumidores>> en paralelo.
+El servicio *distribuidor* es responsable de manejar los registros escritos por los xref:clientes/clientes.adoc[clientes]. Es esencialmente la "primera parada" en la ruta de escritura de los datos de registro. Una vez que el distribuidor recibe los datos de registro, los divide en lotes y los envía a múltiples <<_consumidor,consumidores>> en paralelo.
 
 Los distribuidores se comunican con los consumidores a través de https://grpc.io/[gRPC]. Son apátridas y se pueden ampliar y reducir según sea necesario.
 
 ===== Hashing
+
 Los distribuidores utilizan hashing coherente junto con un factor de replicación configurable para determinar qué instancias del servicio de ingestión deben recibir datos de registro.
 
 El hash se basa en una combinación de las etiquetas del registro y la ID del cliente.
 
-Se utiliza un anillo de hash almacenado en https://www.consul.io/[Consul] para lograr un hashing consistente; todos los <<consumidores>> se registran en el anillo hash con un conjunto de tokens que poseen. Luego, los distribuidores encuentran el token que más se asemeja al valor del hash del registro y enviarán datos al propietario de ese token.
+Se utiliza un anillo de hash almacenado en https://www.consul.io/[Consul] para lograr un hashing consistente; todos los <<_consumidor,consumidores>> se registran en el anillo hash con un conjunto de tokens que poseen. Luego, los distribuidores encuentran el token que más se asemeja al valor del hash del registro y enviarán datos al propietario de ese token.
 
 ===== Consistencia de quórum
+
 Dado que todos los distribuidores comparten el acceso al mismo anillo hash, las solicitudes de escritura se pueden enviar a cualquier distribuidor.
 
 Para garantizar resultados de consulta coherentes, Loki utiliza la coherencia de quórum de https://www.cs.princeton.edu/courses/archive/fall15/cos518/studpres/dynamo.pdf[estilo Dynamo] en las lecturas y escrituras. Esto significa que el distribuidor esperará una respuesta positiva de al menos la mitad más uno de los consumidores a quienes enviar la muestra antes de responder al usuario.
 
 ==== Consumidor
+
 El servicio de *consumidor* es responsable de escribir datos de registro en backends de almacenamiento a largo plazo (DynamoDB, S3, Cassandra, etc.).
 
-El consumidor valida que las líneas de registro ingeridas no estén desordenadas. Cuando un consumidor recibe una línea de registro que no sigue el orden esperado, la línea se rechaza y se devuelve un error al usuario. Consulte la sección sobre <<Orden de la marcas de tiempo>> para obtener más información.
+El consumidor valida que las líneas de registro ingeridas no estén desordenadas. Cuando un consumidor recibe una línea de registro que no sigue el orden esperado, la línea se rechaza y se devuelve un error al usuario. Consulte la sección sobre <<_orden_de_las_marcas_de_tiempo,Orden de las marcas de tiempo>> para obtener más información.
 
 El consumidor valida que las líneas de registro ingeridas se reciben en orden ascendente de marca de tiempo (es decir, cada registro tiene una marca de tiempo que se produce en un momento posterior al registro anterior). Cuando el consumidor recibe un registro que no sigue este orden, la línea de registro se rechaza y se devuelve un error.
 
@@ -48,35 +51,41 @@ Los registros de cada conjunto único de etiquetas se crean en "fragmentos" en l
 Si un proceso de consumidor falla o sale abruptamente, se perderán todos los datos que aún no se hayan vaciado. Loki generalmente está configurado para replicar múltiples réplicas (generalmente 3) de cada registro para mitigar este riesgo.
 
 ===== Orden de las marcas de tiempo
+
 En general, todas las líneas enviadas a Loki para un flujo determinado (combinación única de etiquetas) deben tener una marca de tiempo más reciente que la línea recibida antes. Sin embargo, existen dos casos para manejar registros para el mismo flujo con marcas de tiempo idénticas en nanosegundos:
 
 . Si la línea entrante coincide exactamente con la línea recibida anteriormente (coinciden la marca de tiempo anterior y el texto del registro), la línea entrante se tratará como un duplicado exacto y se ignorará.
 . Si la línea entrante tiene la misma marca de tiempo que la línea anterior pero un contenido diferente, se acepta la línea de registro. Esto significa que es posible tener dos líneas de registro diferentes para la misma marca de tiempo.
 
 ===== Traspaso
+
 De forma predeterminada, cuando un consumidor se apaga e intenta salir del anillo de hash, esperará para ver si un nuevo consumidor intenta ingresar antes de vaciar e intentará iniciar un traspaso. El traspaso transferirá todos los tokens y fragmentos en memoria propiedad del consumidor saliente al nuevo consumidor.
 
 Este proceso se utiliza para evitar vaciar todos los fragmentos al apagar, lo cual es un proceso lento.
 
 ===== Soporte de sistema de archivos
-Si bien los consumidores admiten la escritura al sistema de archivos a través de BoltDB, esto solo funciona en modo de proceso único, ya que los <<consultadores>> necesitan acceso al mismo almacén de back-end y BoltDB solo permite que un proceso tenga un bloqueo en la base de datos en un momento dado.
+
+Si bien los consumidores admiten la escritura al sistema de archivos a través de BoltDB, esto solo funciona en modo de proceso único, ya que los <<_consultador,consultadores>> necesitan acceso al mismo almacén de back-end y BoltDB solo permite que un proceso tenga un bloqueo en la base de datos en un momento dado.
 
 ==== Consultador
-El servicio de *consultador* maneja la evaluación LogQL real de los registros almacenados en el almacenamiento a largo plazo.
+
+El servicio de *consultador* maneja la evaluación xref:logql/logql.adoc[LogQL] real de los registros almacenados en el almacenamiento a largo plazo.
 
 Primero intenta consultar todos los ingestores para obtener datos en la memoria antes de fvolviendo a cargar datos desde la tienda de backend.
 
 ==== Interfaz de consulta
+
 El servicio de *interfaz de consulta* es un componente opcional frente a un grupo de consultadores. Es responsable de programar las solicitudes de manera justa entre ellos, de hacerlos en paralelo cuando sea posible y de almacenarlos en caché.
 
 === Almacén de fragmentos
+
 El *almacén de fragmentos* es el almacén de datos a largo plazo de Loki, diseñado para admitir consultas interactivas y escritura continua sin necesidad de tareas de mantenimiento en segundo plano. Consiste en:
 
 * Un índice para los trozos. Este índice puede estar respaldado por https://aws.amazon.com/dynamodb[DynamoDB de Amazon Web Services], https://cloud.google.com/bigtable[Bigtable de Google Cloud Platform] o https://cassandra.apache.org/[Apache Cassandra].
 * Un almacén de clave-valor (KV) para los datos del fragmento en sí, que puede ser DynamoDB, Bigtable, Cassandra nuevamente o un almacén de objetos como https://aws.amazon.com/s3[Amazon * S3]
 
 ****
-A diferencia de los otros componentes centrales de Loki, el almacén de fragmentos no es un servicio, trabajo o proceso separado, sino más bien una biblioteca integrada en los dos servicios que necesitan acceder a los datos de Loki: el <<consumidor>> y el <<consultador>>.
+A diferencia de los otros componentes centrales de Loki, el almacén de fragmentos no es un servicio, trabajo o proceso separado, sino más bien una biblioteca integrada en los dos servicios que necesitan acceder a los datos de Loki: el <<_consumidor,consumidor>> y el <<_consultador,consultador>>.
 ****
 
 El almacén de fragmentos se basa en una interfaz unificada para los almacenes "link:https://en.wikipedia.org/wiki/NoSQL[NoSQL]" (DynamoDB, Bigtable y Cassandra) que se puede utilizar para respaldar el índice del almacén de fragmentos. Esta interfaz asume que el índice es una colección de entradas codificadas por:

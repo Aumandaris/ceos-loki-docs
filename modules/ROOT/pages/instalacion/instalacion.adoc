@@ -4,8 +4,8 @@
 
 Instrucciones para diferentes métodos de instalación de Loki y Promtail.
 
-* link:construir-desde-la-fuente.adoc[Instalar y ejecutar localmente]
-* link:local.adoc[Instalar desde la fuente]
+* xref:construir-desde-la-fuente.adoc[Instalar desde la fuente]
+* xref:local.adoc[Instalar y ejecutar localmente]
 
 == Proceso general
 

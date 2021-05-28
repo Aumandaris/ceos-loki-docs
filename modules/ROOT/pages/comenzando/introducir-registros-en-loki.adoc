@@ -1,10 +1,10 @@
 = Introducir registros en Loki
 
-Después de link:../instalacion/local.adoc[instalar y ejecutar Loki], probablemente desee obtener registros de otras aplicaciones.
+Después de xref:instalacion/local.adoc[instalar y ejecutar Loki], probablemente desee obtener registros de otras aplicaciones.
 
-Para obtener los registros de la aplicación en Loki, debe editar el archivo de configuración de [Promtail].
+Para obtener los registros de la aplicación en Loki, debe editar el archivo de configuración de xref:clientes/promtail.adoc[Promtail].
 
-Información detallada sobre la configuración de Promtail está disponible en la [Configuración de Promtail].
+Información detallada sobre la configuración de Promtail está disponible en la xref:clientes/promtail/configuracion.adoc[Configuración de Promtail].
 
 Las siguientes instrucciones le ayudarán a comenzar.
 

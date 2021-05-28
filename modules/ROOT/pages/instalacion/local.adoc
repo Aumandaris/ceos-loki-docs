@@ -9,7 +9,7 @@ Para registrar eventos con Loki, debe descargar e instalar Promtail y Loki.
 
 . Navega a la https://github.com/grafana/loki/releases/[página de lanzamiento].
 . Desplácese hacia abajo hasta la sección Activos debajo de la versión que desea instalar.
-. Descargue los archivos .zip de Loki y Promtail que correspondan a su sistema. *Nota:* No descargue LogCLI o Loki Canary en este momento. <<LogCLI>> le permite ejecutar consultas de Loki en una interfaz de línea de comandos. <<Loki Canary>> es una herramienta para auditar el desempeño de Loki.
+. Descargue los archivos .zip de Loki y Promtail que correspondan a su sistema. *Nota:* No descargue LogCLI o Loki Canary en este momento. xref:comenzando/logcli.adoc[LogCLI] le permite ejecutar consultas de Loki en una interfaz de línea de comandos. xref:operaciones/loki-canary.adoc[Loki Canary] es una herramienta para auditar el desempeño de Loki.
 . Descomprima el contenido del paquete en el mismo directorio. Aquí es donde se ejecutarán los dos programas.
 . En la línea de comandos, cambie el directorio (`cd` en la mayoría de los sistemas) al directorio con Loki y Promtail. Copie y pegue los siguientes comandos en su línea de comandos para descargar archivos de configuración genéricos:
 +
@@ -34,7 +34,7 @@ wget https://raw.githubusercontent.com/grafana/loki/main/clients/cmd/promtail/pr
 
 Loki ejecuta y muestra los registros de Loki en su línea de comando y en http://localhost:3100/metrics.
 
-¡Felicitaciones, Loki está instalado y funcionando! A continuación, es posible que desee editar el archivo de configuración de Promtail para <<obtener registros en Loki>>.
+¡Felicitaciones, Loki está instalado y funcionando! A continuación, es posible que desee editar el archivo de configuración de Promtail para xref:comenzando/introducir-registros-en-loki.adoc[introducir registros en Loki].
 
 == Lanzamiento de binarios: solo openSUSE Linux
 
