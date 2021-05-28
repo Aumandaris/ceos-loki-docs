@@ -4,4 +4,7 @@
 
 == Versión 1.0
 
+* Versión de Loki 2.2.1
+
+image::modules/ROOT/images/ceos-loki-docs.png[]
 
