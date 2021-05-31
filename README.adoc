@@ -2,13 +2,11 @@
 
 == https://aumandaris.github.io/ceos-loki-docs/ceos-loki-docs/2.2.1/index.html[Ir a la Documentación]
 
+Traducción de la https://grafana.com/docs/loki/latest/[documentación de Loki]
+
 == Versión 1.0
 
 * Versión de Loki 2.2.1
 
 image::modules/ROOT/images/ceos-loki-docs.png[]
-
-== Por Hacer
-
-* Eliminar los elementos de la barra de navegación
 
