@@ -7,7 +7,7 @@ content:
 ui:
   bundle: 
     url: https://github.com/Aumandaris/ceos-loki-docs/blob/master/ui-bundle.zip
-    snapshot: true
+    # snapshot: true
   supplemental_files:
   - path: ui.yml
     contents: |
