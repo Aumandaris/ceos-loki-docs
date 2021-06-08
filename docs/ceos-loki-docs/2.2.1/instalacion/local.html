@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Instalar y ejecutar Loki localmente :: Documentación de Loki</title>
+    <link rel="canonical" href="https://aumandaris.github.io/ceos-loki-docs/ceos-loki-docs/2.2.1/index.html/ceos-loki-docs/2.2.1/instalacion/local.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://aumandaris.github.io/ceos-loki-docs/ceos-loki-docs/2.2.1/index.html">
+        <img src="/docs/ceos-loki-docs/2.2.1/_images/logo.png" width="100">
+        <span>| Documentación de Loki<span>     
+      </a>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ceos-loki-docs" data-version="2.2.1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">Documentación de Loki</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../descripcion-general/descripcion-general.html">Descripción general</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="instalacion.html">Instalación</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="construir-desde-la-fuente.html">Construir desde la luente</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="local.html">Local</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../comenzando/comenzando.html">Comenzando</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../comenzando/introducir-registros-en-loki.html">Introducir registros en Loki</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../comenzando/etiquetas.html">Etiquetas</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../comenzando/logcli.html">LogCLI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../comenzando/loki-en-grafana.html">Loki en Grafana</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../comenzando/solucion-de-problemas.html">Solución de problemas</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../mejores-practicas/mejores-practicas.html">Mejores prácticas</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Documentación de Loki</span>
+    <span class="version">2.2.1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../index.html">Documentación de Loki</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">2.2.1</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">Documentación de Loki</a></li>
+    <li><a href="instalacion.html">Instalación</a></li>
+    <li><a href="local.html">Local</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/Aumandaris/ceos-loki-docs/edit/master/modules/ROOT/pages/instalacion/local.adoc">Editar esta página</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Instalar y ejecutar Loki localmente</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Para registrar eventos con Loki, debe descargar e instalar Promtail y Loki.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Loki es el motor de registro.</p>
+</li>
+<li>
+<p>Promtail envía registros a Loki.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_instalar_y_ejecutar"><a class="anchor" href="#_instalar_y_ejecutar"></a>Instalar y ejecutar</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navega a la <a href="https://github.com/grafana/loki/releases/">página de lanzamiento</a>.</p>
+</li>
+<li>
+<p>Desplácese hacia abajo hasta la sección Activos debajo de la versión que desea instalar.</p>
+</li>
+<li>
+<p>Descargue los archivos .zip de Loki y Promtail que correspondan a su sistema. <strong>Nota:</strong> No descargue LogCLI o Loki Canary en este momento. <a href="../comenzando/logcli.html" class="page">LogCLI</a> le permite ejecutar consultas de Loki en una interfaz de línea de comandos. <a href="#operaciones/loki-canary.adoc" class="page unresolved">Loki Canary</a> es una herramienta para auditar el desempeño de Loki.</p>
+</li>
+<li>
+<p>Descomprima el contenido del paquete en el mismo directorio. Aquí es donde se ejecutarán los dos programas.</p>
+</li>
+<li>
+<p>En la línea de comandos, cambie el directorio (<code>cd</code> en la mayoría de los sistemas) al directorio con Loki y Promtail. Copie y pegue los siguientes comandos en su línea de comandos para descargar archivos de configuración genéricos:</p>
+<div class="listingblock">
+<div class="content">
+<pre>wget https://raw.githubusercontent.com/grafana/loki/master/cmd/loki/loki-local-config.yaml
+wget https://raw.githubusercontent.com/grafana/loki/main/clients/cmd/promtail/promtail-local-config.yaml</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Ingrese el siguiente comando para iniciar Loki:</p>
+<div class="paragraph">
+<p><strong>Windows</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>.\loki-windows-amd64.exe --config.file=loki-local-config.yaml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Linux</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>./loki-linux-amd64 -config.file=loki-local-config.yaml</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Loki ejecuta y muestra los registros de Loki en su línea de comando y en <a href="http://localhost:3100/metrics" class="bare">http://localhost:3100/metrics</a>.</p>
+</div>
+<div class="paragraph">
+<p>¡Felicitaciones, Loki está instalado y funcionando! A continuación, es posible que desee editar el archivo de configuración de Promtail para <a href="../comenzando/introducir-registros-en-loki.html" class="page">introducir registros en Loki</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lanzamiento_de_binarios_solo_opensuse_linux"><a class="anchor" href="#_lanzamiento_de_binarios_solo_opensuse_linux"></a>Lanzamiento de binarios: solo openSUSE Linux</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cada lanzamiento incluye binarios para Loki que se pueden encontrar en la <a href="https://github.com/grafana/loki/releases/">Página de lanzamientos</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_paquetes_comunitarios_de_opensuse_linux"><a class="anchor" href="#_paquetes_comunitarios_de_opensuse_linux"></a>Paquetes comunitarios de openSUSE Linux</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>La comunidad proporciona paquetes de Loki para openSUSE Linux. Para instalar:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Agregue el repositorio <code><a href="https://download.opensuse.org/repositories/security:/logging/" class="bare">https://download.opensuse.org/repositories/security:/logging/</a></code> a su sistema. Por ejemplo, si está utilizando Leap 15.1, ejecute <code>sudo zypper ar <a href="https://download.opensuse.org/repositories/security:/logging/openSUSE_Leap_15.1/security:logging.repo" class="bare">https://download.opensuse.org/repositories/security:/logging/openSUSE_Leap_15.1/security:logging.repo</a>; sudo zypper ref</code></p>
+</li>
+<li>
+<p>Instale el paquete Loki con <code>zypper in loki</code></p>
+</li>
+<li>
+<p>Habilite los servicios de Loki y Promtail:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>systemd start loki &amp;&amp; systemd enable loki</code></p>
+</li>
+<li>
+<p><code>systemd start promtail &amp;&amp; systemd enable promtail</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Modifique los archivos de configuración según sea necesario: <code>/etc/loki/promtail.yaml</code> y <code>/etc/loki/loki.yaml</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>Esta página fue hecha usando la interfaz predeterminada de Antora.</p>
+  <p>El código de esta interfaz está licenciado bajo los términos de la licencia MPL-2.0.</p>
+</footer>
+<script src="../../../_/js/site.js"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
