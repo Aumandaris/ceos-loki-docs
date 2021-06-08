@@ -6,7 +6,7 @@ content:
   - url: https://github.com/Aumandaris/ceos-loki-docs.git
 ui:
   bundle: 
-    url: https://github.com/Aumandaris/ceos-loki-docs/files/6617708/paquete-interfaz-ceos.zip
+    url: https://github.com/Aumandaris/ceos-loki-docs/files/latest/paquete-interfaz-ceos.zip
     snapshot: true
   supplemental_files:
   - path: ui.yml
