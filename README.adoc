@@ -4,6 +4,11 @@
 
 Traducción de la https://grafana.com/docs/loki/latest/[documentación de Loki]
 
+== Versión 1.1
+
+* Incluido logo de la empresa
+* Arreglada la plantilla del sitio
+
 == Versión 1.0
 
 * Versión de Loki 2.2.1
